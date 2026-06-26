@@ -1,6 +1,9 @@
 #ifndef UTILS_H
 #define UTILS_H
 
-double mapFloat(double x, double in_min, double in_max, double out_min, double out_max);
+inline float mapFloat(float x, float in_min, float in_max, float out_min, float out_max) 
+{
+  return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+}
 
 #endif

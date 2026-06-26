@@ -76,10 +76,15 @@ const float MAX_DT = 0.1;          // Maximum allowed dt (100ms) - skip if excee
 const float MIN_DT = 0.0001;       // Minimum allowed dt (0.1ms) - skip if below
 
 // ============================================================================
+// LOOP TIMING
+// ============================================================================
+const unsigned long LOOP_INTERVAL = 2000;  // Loop interval in microseconds (500Hz)
+
+// ============================================================================
 // WIFI CONFIGURATION
 // ============================================================================
-const char* WIFI_SSID = "Esp32drone";
-const char* WIFI_PASSWORD = "esp32drone";
+extern const char* WIFI_SSID;
+extern const char* WIFI_PASSWORD;
 const int WIFI_PORT = 80;
 
 // ============================================================================
@@ -115,6 +120,20 @@ const int ERROR_RESTART_DELAY = 10; // Delay in error loop before restart check 
 // ============================================================================
 const float YAW_ANGLE_MAX = 180.0;   // Maximum yaw angle before wrapping (degrees)
 const float YAW_ANGLE_MIN = -180.0;  // Minimum yaw angle before wrapping (degrees)
+
+// ============================================================================
+// TEST / DIAGNOSTIC CONSTANTS
+// ============================================================================
+const float MPU_TEST_ANGLE = 30.0;         // Target angle for per-axis rotation test (degrees)
+const float MPU_TEST_TOLERANCE = 2.0;      // Degrees tolerance for detection
+const unsigned long MPU_TEST_TIMEOUT_MS = 30000; // Timeout per axis in ms
+const unsigned long MPU_LIVE_PRINT_MS = 100;    // Live print interval during MPU tests (ms)
+const unsigned long MPU_FREESTYLE_DURATION_MS = 10000; // Freestyle test duration (ms)
+
+// Motor test constants
+const int MOTOR_TEST_VALUE = 300;          // Motor test command value (user-requested)
+const unsigned long MOTOR_TEST_DURATION_MS = 2000; // How long to run each motor during init (ms)
+const unsigned long MOTOR_TEST_PAUSE_MS = 500; // Pause between motor tests (ms)
 
 // ============================================================================
 // PWM OUTPUT LIMITS (Constraint Ranges)

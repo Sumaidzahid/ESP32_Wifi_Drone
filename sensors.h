@@ -5,16 +5,21 @@
 #include "I2Cdev.h"
 #include "MPU6050.h"
 #include "config.h"
-
+ 
 extern MPU6050 mpu;
-extern float accErrorX, accErrorY, accErrorZ;
-extern float gyroErrorX, gyroErrorY, gyroErrorZ;
-extern float roll, pitch;
-extern float gyroX, gyroY, gyroZ;
+
+struct SensorState {
+    float accX, accY, accZ;
+    float gyroX, gyroY, gyroZ;
+    float roll, pitch, yaw;
+};
+
+extern SensorState sensors;
 extern TwoWire I2CBus;
 
 void read_MPU6050();
 void calibrateMPU();
-float readSensors();
+float readSensors(float &dt);
+void runMPUTests();
 
 #endif

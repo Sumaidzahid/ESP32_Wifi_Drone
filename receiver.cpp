@@ -22,18 +22,17 @@ void parseUDP(char* data) {
     return;
   }
 
-  float tNorm, rNorm, pNorm, yNorm;
+  float tNorm, yNorm, pNorm, rNorm;
 
-  float tf, rf, pf, yf;
-  int ti, ri, pi, yi;
+  float tf, yf, pf, rf;
+  int ti, yi, pi, ri;
 
-  if (sscanf(data, "%f,%f,%f,%f", &tf, &rf, &pf, &yf) == 4 ||
-      sscanf(data, "T:%f,R:%f,P:%f,Y:%f", &tf, &rf, &pf, &yf) == 4) {
+  if (sscanf(data, "%f,%f,%f,%f", &tf, &yf, &pf, &rf) == 4) {
     tNorm = constrain(tf, 0.0f, 1.0f);
     rNorm = constrain(rf, -1.0f, 1.0f);
     pNorm = constrain(pf, -1.0f, 1.0f);
     yNorm = constrain(yf, -1.0f, 1.0f);
-  } else if (sscanf(data, "T:%d,R:%d,P:%d,Y:%d", &ti, &ri, &pi, &yi) == 4) {
+  } else if (sscanf(data, "T:%d,R:%d,P:%d,Y:%d", &ti, &yi, &pi, &ri) == 4) {
     tNorm = constrain((float)ti / 100.0f, 0.0f, 1.0f);
     rNorm = constrain((float)ri / 100.0f, -1.0f, 1.0f);
     pNorm = constrain((float)pi / 100.0f, -1.0f, 1.0f);

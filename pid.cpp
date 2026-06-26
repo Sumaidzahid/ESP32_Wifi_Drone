@@ -7,7 +7,6 @@
 PIDController anglePID_Roll, anglePID_Pitch;
 PIDController ratePID_Roll, ratePID_Pitch, ratePID_Yaw;
 
-float target_angleRoll = 0, target_anglePitch = 0, target_rateYaw = 0;
 float PIDrollOutput = 0, PIDpitchOutput = 0, PIDyawOutput = 0;
 float error_rateRoll = 0, error_ratePitch = 0, error_rateYaw = 0;
 float rollOutput = 0, pitchOutput = 0, yawOutput = 0;
@@ -55,20 +54,20 @@ void setFixedPIDGains() {
 
 void computePID(float dt) {
   // Angle PID
-  errorRoll = target_angleRoll - roll;
+  errorRoll = target_angleRoll - sensors.roll;
   target_rateRoll = anglePID_Roll.compute(errorRoll, dt);
 
-  errorPitch = target_anglePitch - pitch;
+  errorPitch = target_anglePitch - sensors.pitch;
   target_ratePitch = anglePID_Pitch.compute(errorPitch, dt);
 
   // Rate PID
-  error_rateRoll = target_rateRoll - gyroX;  // Need gyroX from sensors
+  error_rateRoll = target_rateRoll - sensors.gyroX;
   rollOutput = ratePID_Roll.compute(error_rateRoll, dt);
 
-  error_ratePitch = target_ratePitch - gyroY;
+  error_ratePitch = target_ratePitch - sensors.gyroY;
   pitchOutput = ratePID_Pitch.compute(error_ratePitch, dt);
 
-  error_rateYaw = target_rateYaw - gyroZ;
+  error_rateYaw = target_rateYaw - sensors.gyroZ;
   yawOutput = ratePID_Yaw.compute(error_rateYaw, dt);
 
   // Scale outputs
