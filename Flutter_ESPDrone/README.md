@@ -1,7 +1,4 @@
-# EspDrone
+# EspDrone app
 
-A new Flutter project.
+A new Flutter project. This app was generated through prompt engineering. The purpose of this app is to communicate's with the esp32 module via wifi through Access Point (AP) Mode.
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
